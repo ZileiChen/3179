@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "projection": { "type": "mercator", "center": [133, -28], "scale": 600 },
+  "layer": [
+    {
+      "data": {
+        "url": "states.json",
+        "format": { "type": "topojson", "feature": "states" }
+      },
+      "mark": { "type": "geoshape", "stroke": "black", "strokeWidth": 0.5 },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": { "url": "stateData.json" },
+            "key": "State",
+            "fields": ["OreProcessed", "Mines"]
+          }
+        }
+      ],
+      "encoding": {
+        "color": {
+          "field": "OreProcessed",
+          "type": "quantitative",
+          "scale": { "scheme": "blues", "domain": [200, 1500] },
+          "title": "Ore Processed (Mt)"
+        },
+        "tooltip": [
+          { "field": "properties.STATE_NAME", "type": "nominal", "title": "State" },
+          { "field": "OreProcessed", "type": "quantitative", "title": "Total Ore Processed (Mt)" },
+          { "field": "Mines", "type": "quantitative", "title": "Number of Mines" }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "stateCentroids.json"
+      },
+      "transform": [
+        {
+          "lookup": "State",
+          "from": {
+            "data": { "url": "stateData.json" },
+            "key": "State",
+            "fields": ["Mines"]
+          }
+        }
+      ],
+      "mark": { "type": "text", "dy": -20, "fontSize": 14, "fontWeight": "bold" },
+      "encoding": {
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude": { "field": "latitude", "type": "quantitative" },
+        "text": { "field": "Mines", "type": "quantitative" },
+        "tooltip": [{ "field": "Mines", "type": "quantitative", "title": "Mines" }]
+      }
+    }
+  ]
+}
