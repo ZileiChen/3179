@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Gold Production per Year by State in Australia",
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "gold_production_long.csv",
+    "format": { "type": "csv" }
+  },
+  "transform": [
+    {
+      "calculate": "toDate(datum.YEAR)",
+      "as": "YearDate"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "YearDate",
+      "type": "temporal",
+      "title": "Year",
+      "axis": { "format": "%Y" }
+    },
+    "y": {
+      "field": "GoldProduced",
+      "type": "quantitative",
+      "title": "Gold Produced (kg Au)"
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State"
+    },
+    "tooltip": [
+      { "field": "YEAR", "type": "ordinal", "title": "Year" },
+      { "field": "State", "type": "nominal", "title": "State" },
+      { "field": "GoldProduced", "type": "quantitative", "title": "Gold Produced (kg Au)" }
+    ]
+  },
+  "mark": "line"
+}

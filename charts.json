@@ -1,60 +1,118 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 600,
-  "projection": { "type": "mercator", "center": [133, -28], "scale": 600 },
-  "layer": [
+  "autosize": {
+    "type": "fit",
+    "resize": true,
+    "contains": "padding"
+  },
+  "vconcat": [
     {
-      "data": {
-        "url": "states.json",
-        "format": { "type": "topojson", "feature": "states" }
+      "width": 800,
+      "height": 500,
+      "projection": {
+        "type": "mercator",
+        "center": [133, -28],
+        "scale": 500,
+        "translate": [400, 250]
       },
-      "mark": { "type": "geoshape", "stroke": "black", "strokeWidth": 0.5 },
-      "transform": [
+      "layer": [
         {
-          "lookup": "properties.STATE_NAME",
-          "from": {
-            "data": { "url": "stateData.json" },
-            "key": "State",
-            "fields": ["OreProcessed", "Mines"]
+          "data": {
+            "url": "states.json",
+            "format": { "type": "topojson", "feature": "states" }
+          },
+          "mark": { "type": "geoshape", "stroke": "black", "strokeWidth": 0.5 },
+          "transform": [
+            {
+              "lookup": "properties.STATE_NAME",
+              "from": {
+                "data": { "url": "stateData.json" },
+                "key": "State",
+                "fields": ["OreProcessed", "Mines"]
+              }
+            }
+          ],
+          "encoding": {
+            "color": {
+              "field": "OreProcessed",
+              "type": "quantitative",
+              "scale": { "scheme": "blues", "domain": [200, 1500] },
+              "title": "Ore Processed (Mt)"
+            },
+            "tooltip": [
+              { "field": "properties.STATE_NAME", "type": "nominal", "title": "State" },
+              { "field": "OreProcessed", "type": "quantitative", "title": "Total Ore Processed (Mt)" },
+              { "field": "Mines", "type": "quantitative", "title": "Number of Mines" }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "stateCentroids.json"
+          },
+          "transform": [
+            {
+              "lookup": "State",
+              "from": {
+                "data": { "url": "stateData.json" },
+                "key": "State",
+                "fields": ["Mines"]
+              }
+            }
+          ],
+          "mark": { "type": "text", "dy": -20, "fontSize": 14, "fontWeight": "bold" },
+          "encoding": {
+            "longitude": { "field": "longitude", "type": "quantitative" },
+            "latitude": { "field": "latitude", "type": "quantitative" },
+            "text": { "field": "Mines", "type": "quantitative" },
+            "tooltip": [{ "field": "Mines", "type": "quantitative", "title": "Mines" }]
           }
         }
-      ],
-      "encoding": {
-        "color": {
-          "field": "OreProcessed",
-          "type": "quantitative",
-          "scale": { "scheme": "blues", "domain": [200, 1500] },
-          "title": "Ore Processed (Mt)"
-        },
-        "tooltip": [
-          { "field": "properties.STATE_NAME", "type": "nominal", "title": "State" },
-          { "field": "OreProcessed", "type": "quantitative", "title": "Total Ore Processed (Mt)" },
-          { "field": "Mines", "type": "quantitative", "title": "Number of Mines" }
-        ]
-      }
+      ]
     },
     {
+      "title": "Gold Production per Year by State in Australia",
+      "width": 800,
+      "height": 400,
       "data": {
-        "url": "stateCentroids.json"
+        "url": "gold_production_long.csv",
+        "format": { "type": "csv" }
       },
       "transform": [
         {
-          "lookup": "State",
-          "from": {
-            "data": { "url": "stateData.json" },
-            "key": "State",
-            "fields": ["Mines"]
-          }
+          "calculate": "toDate(datum.YEAR)",
+          "as": "YearDate"
         }
       ],
-      "mark": { "type": "text", "dy": -20, "fontSize": 14, "fontWeight": "bold" },
       "encoding": {
-        "longitude": { "field": "longitude", "type": "quantitative" },
-        "latitude": { "field": "latitude", "type": "quantitative" },
-        "text": { "field": "Mines", "type": "quantitative" },
-        "tooltip": [{ "field": "Mines", "type": "quantitative", "title": "Mines" }]
-      }
+        "x": {
+          "field": "YearDate",
+          "type": "temporal",
+          "title": "Year",
+          "axis": { "format": "%Y" }
+        },
+        "y": {
+          "field": "GoldProduced",
+          "type": "quantitative",
+          "title": "Gold Produced (kg Au)"
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State"
+        },
+        "tooltip": [
+          { "field": "YEAR", "type": "ordinal", "title": "Year" },
+          { "field": "State", "type": "nominal", "title": "State" },
+          { "field": "GoldProduced", "type": "quantitative", "title": "Gold Produced (kg Au)" }
+        ]
+      },
+      "mark": "line"
     }
-  ]
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  }
 }
