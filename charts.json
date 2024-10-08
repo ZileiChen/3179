@@ -12,7 +12,7 @@
       "projection": {
         "type": "mercator",
         "center": [133, -28],
-        "scale": 440,
+        "scale": 600,
         "translate": [200, 150]
       },
       "layer": [
@@ -81,7 +81,7 @@
       "projection": {
         "type": "mercator",
         "center": [133, -28],
-        "scale": 250,
+        "scale": 600,
         "translate": [200, 150]
       },
       "layer": [
