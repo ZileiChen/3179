@@ -11,8 +11,8 @@
       "height": 400,
       "projection": {
         "type": "mercator",
-        "center": [133, -28],
-        "scale": 600,
+        "center": [128, -25],
+        "scale": 500,
         "translate": [200, 150]
       },
       "layer": [
@@ -80,8 +80,8 @@
       "height": 400,
       "projection": {
         "type": "mercator",
-        "center": [133, -28],
-        "scale": 600,
+        "center": [128, -25],
+        "scale": 500,
         "translate": [200, 150]
       },
       "layer": [
