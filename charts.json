@@ -71,15 +71,73 @@
       ]
     },
     {
-      "title": "Gold Production per Year by State in Australia",
       "width": 800,
-      "height": 400,
-      "data": {
-        "url": "gold_production_long.csv",
-        "format": { "type": "csv" }
+      "height": 500,
+      "projection": {
+        "type": "mercator",
+        "center": [133, -28],
+        "scale": 500,
+        "translate": [400, 250]
       },
       "layer": [
         {
+          "data": {
+            "url": "states.json",
+            "format": { "type": "topojson", "feature": "states" }
+          },
+          "mark": {
+            "type": "geoshape",
+            "stroke": "black",
+            "strokeWidth": 0.5,
+            "fill": "#f0f0f0"
+          }
+        },
+        {
+          "data": {
+            "url": "mineLocations.csv"
+          },
+          "mark": {
+            "type": "circle",
+            "opacity": 0.8,
+            "stroke": "black",
+            "strokeWidth": 0.3
+          },
+          "encoding": {
+            "longitude": { "field": "Longitude", "type": "quantitative" },
+            "latitude": { "field": "Latitude", "type": "quantitative" },
+            "color": {
+              "field": "Status",
+              "type": "nominal",
+              "title": "Mine Status",
+              "legend": { "orient": "bottom-left" },
+              "scale": {
+                "domain": ["Operating mine", "Care and maintenance", "Developing mine"],
+                "range": ["#2ca02c", "#ff7f0e", "#1f77b4"]
+              }
+            },
+            "size": {
+              "value": 50
+            },
+            "tooltip": [
+              { "field": "Name", "type": "nominal", "title": "Mine Name" },
+              { "field": "State", "type": "nominal" },
+              { "field": "Status", "type": "nominal" },
+              { "field": "CommodityGroup", "type": "nominal", "title": "Commodity Group" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Gold Production per Year by State in Australia",
+      "width": 800,
+      "height": 400,
+      "layer": [
+        {
+          "data": {
+            "url": "gold_production_long.csv",
+            "format": { "type": "csv" }
+          },
           "selection": {
             "StateSelection": {
               "type": "multi",
