@@ -5,15 +5,15 @@
     "resize": true,
     "contains": "padding"
   },
-  "vconcat": [
+  "concat": [
     {
-      "width": 800,
-      "height": 500,
+      "width": 400,
+      "height": 300,
       "projection": {
         "type": "mercator",
         "center": [133, -28],
-        "scale": 500,
-        "translate": [400, 250]
+        "scale": 250,
+        "translate": [200, 150]
       },
       "layer": [
         {
@@ -41,7 +41,12 @@
             },
             "tooltip": [
               { "field": "properties.STATE_NAME", "type": "nominal", "title": "State" },
-              { "field": "OreProcessed", "type": "quantitative", "title": "Total Ore Processed (Mt)" },
+              {
+                "field": "OreProcessed",
+                "type": "quantitative",
+                "title": "Total Ore Processed (Mt)",
+                "format": ",.2f"
+              },
               { "field": "Mines", "type": "quantitative", "title": "Number of Mines" }
             ]
           }
@@ -60,7 +65,7 @@
               }
             }
           ],
-          "mark": { "type": "text", "dy": -20, "fontSize": 14, "fontWeight": "bold" },
+          "mark": { "type": "text", "dy": -10, "fontSize": 10, "fontWeight": "bold" },
           "encoding": {
             "longitude": { "field": "longitude", "type": "quantitative" },
             "latitude": { "field": "latitude", "type": "quantitative" },
@@ -71,13 +76,13 @@
       ]
     },
     {
-      "width": 800,
-      "height": 500,
+      "width": 400,
+      "height": 300,
       "projection": {
         "type": "mercator",
         "center": [133, -28],
-        "scale": 500,
-        "translate": [400, 250]
+        "scale": 250,
+        "translate": [200, 150]
       },
       "layer": [
         {
@@ -116,7 +121,7 @@
               }
             },
             "size": {
-              "value": 50
+              "value": 30
             },
             "tooltip": [
               { "field": "Name", "type": "nominal", "title": "Mine Name" },
@@ -130,8 +135,8 @@
     },
     {
       "title": "Gold Production per Year by State in Australia",
-      "width": 800,
-      "height": 400,
+      "width": 400,
+      "height": 300,
       "layer": [
         {
           "data": {
@@ -175,7 +180,7 @@
             "tooltip": [
               { "field": "YEAR", "type": "ordinal", "title": "Year" },
               { "field": "State", "type": "nominal", "title": "State" },
-              { "field": "GoldProduced", "type": "quantitative", "title": "Gold Produced (kg Au)" }
+              { "field": "GoldProduced", "type": "quantitative", "title": "Gold Produced (kg Au)", "format": ",.0f" }
             ]
           }
         },
@@ -213,9 +218,9 @@
                 "type": "text",
                 "align": "right",
                 "dx": -20,
-                "dy": -200,
+                "dy": -50,
                 "color": "red",
-                "fontSize": 12,
+                "fontSize": 10,
                 "fontStyle": "italic"
               },
               "encoding": {
@@ -236,8 +241,57 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Amount Mined vs. Value per Tonne",
+      "width": 400,
+      "height": 300,
+      "data": {
+        "url": "oresMined2021.csv",
+        "format": { "type": "csv" }
+      },
+      "encoding": {
+        "x": {
+          "field": "Weight_t",
+          "type": "quantitative",
+          "title": "Amount Mined (tonnes)",
+          "scale": { "type": "log" },
+          "axis": { "grid": true }
+        },
+        "y": {
+          "field": "ValuePerTonne",
+          "type": "quantitative",
+          "title": "Value per Tonne ($/t)",
+          "scale": { "type": "log" },
+          "axis": { "grid": true }
+        },
+        "size": {
+          "field": "TotalValue",
+          "type": "quantitative",
+          "title": "Total Value ($)",
+          "scale": { "type": "sqrt", "range": [50, 500] }
+        },
+        "color": {
+          "field": "Commodity",
+          "type": "nominal",
+          "legend": { "title": "Commodity" }
+        },
+        "tooltip": [
+          { "field": "Commodity", "type": "nominal" },
+          { "field": "Weight_t", "type": "quantitative", "title": "Amount Mined (t)", "format": ",.2f" },
+          { "field": "ValuePerTonne", "type": "quantitative", "title": "Value per Tonne ($/t)", "format": "$,.2f" },
+          { "field": "TotalValue", "type": "quantitative", "title": "Total Value ($)", "format": "$,.0f" }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "strokeWidth": 0.5
+      }
     }
   ],
+  "columns": 2,
   "resolve": {
     "scale": {
       "color": "independent"
