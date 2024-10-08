@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ore Mining in Australia</title>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
     <!-- Include Vega, Vega-Lite, and Vega-Embed -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
@@ -10,9 +14,14 @@
   </head>
   <body>
     <h1>Ore Mining in Australia</h1>
-    <div id="vis"></div>
+    <p class="introduction">
+      Ore mining is a critical component of the nations GDP. Mining in Australia amounts to roughly 75% of the country's
+      exports.
+    </p>
+    <div class="vis">
+      <div id="vis"></div>
+    </div>
     <script>
-      // Embed the Vega-Lite visualization from the JSON spec file
       vegaEmbed("#vis", "charts.json").catch(console.error);
     </script>
   </body>
