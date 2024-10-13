@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Amount Mined vs. Value per Tonne",
+  "width": 400,
+  "height": 400,
+  "data": {
+    "url": "../data/oresMined2021.csv",
+    "format": { "type": "csv" }
+  },
+  "encoding": {
+    "x": {
+      "field": "Weight_t",
+      "type": "quantitative",
+      "title": "Amount Mined (tonnes)",
+      "scale": { "type": "log" },
+      "axis": { "grid": true }
+    },
+    "y": {
+      "field": "ValuePerTonne",
+      "type": "quantitative",
+      "title": "Value per Tonne ($/t)",
+      "scale": { "type": "log" },
+      "axis": { "grid": true }
+    },
+    "size": {
+      "field": "TotalValue",
+      "type": "quantitative",
+      "title": "Total Value ($)",
+      "scale": { "type": "sqrt", "range": [50, 500] },
+      "legend": { "orient": "right" }
+    },
+    "color": {
+      "field": "Commodity",
+      "type": "nominal",
+      "legend": { "title": "Commodity" }
+    },
+    "tooltip": [
+      { "field": "Commodity", "type": "nominal" },
+      {
+        "field": "Weight_t",
+        "type": "quantitative",
+        "title": "Amount Mined (t)",
+        "format": ",.2f"
+      },
+      {
+        "field": "ValuePerTonne",
+        "type": "quantitative",
+        "title": "Value per Tonne ($/t)",
+        "format": "$,.2f"
+      },
+      {
+        "field": "TotalValue",
+        "type": "quantitative",
+        "title": "Total Value ($)",
+        "format": "$,.0f"
+      }
+    ]
+  },
+  "mark": {
+    "type": "circle",
+    "opacity": 0.8,
+    "stroke": "black",
+    "strokeWidth": 0.5
+  }
+}

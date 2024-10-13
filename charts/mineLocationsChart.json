@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Mine Locations Australia",
+  "width": 400,
+  "height": 400,
+  "projection": {
+    "type": "mercator",
+    "center": [128, -25],
+    "scale": 400,
+    "translate": [200, 150]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "../mapData/states.json",
+        "format": { "type": "topojson", "feature": "states" }
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.5,
+        "fill": "#f0f0f0"
+      }
+    },
+    {
+      "data": {
+        "url": "../data/mineLocations.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "strokeWidth": 0.3
+      },
+      "encoding": {
+        "longitude": { "field": "Longitude", "type": "quantitative" },
+        "latitude": { "field": "Latitude", "type": "quantitative" },
+        "color": {
+          "field": "Status",
+          "type": "nominal",
+          "title": "Mine Status",
+          "legend": { "orient": "bottom-left" },
+          "scale": {
+            "domain": ["Operating mine", "Care and maintenance", "Developing mine"],
+            "range": ["#2ca02c", "#ff7f0e", "#1f77b4"]
+          }
+        },
+        "size": {
+          "value": 30
+        },
+        "tooltip": [
+          { "field": "Name", "type": "nominal", "title": "Mine Name" },
+          { "field": "State", "type": "nominal" },
+          { "field": "Status", "type": "nominal" },
+          { "field": "CommodityGroup", "type": "nominal", "title": "Commodity Group" }
+        ]
+      }
+    }
+  ]
+}

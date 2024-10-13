@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Gold Production per Year by State in Australia",
+  "width": 400,
+  "height": 400,
+  "layer": [
+    {
+      "data": {
+        "url": "../data/gold_production_long.csv",
+        "format": { "type": "csv" }
+      },
+      "selection": {
+        "StateSelection": {
+          "type": "multi",
+          "fields": ["State"],
+          "bind": "legend"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.YEAR)",
+          "as": "YearDate"
+        },
+        {
+          "filter": { "selection": "StateSelection" }
+        }
+      ],
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "YearDate",
+          "type": "temporal",
+          "title": "Year",
+          "axis": { "format": "%Y" }
+        },
+        "y": {
+          "field": "GoldProduced",
+          "type": "quantitative",
+          "title": "Gold Produced (kg Au)"
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State"
+        },
+        "tooltip": [
+          { "field": "YEAR", "type": "ordinal", "title": "Year" },
+          { "field": "State", "type": "nominal", "title": "State" },
+          {
+            "field": "GoldProduced",
+            "type": "quantitative",
+            "title": "Gold Produced (kg Au)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2003,
+            "Event": "Mining Boom in Australia"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.Year)",
+          "as": "YearDate"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "red",
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "x": {
+              "field": "YearDate",
+              "type": "temporal"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -20,
+            "dy": -50,
+            "color": "red",
+            "fontSize": 10,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "x": {
+              "field": "YearDate",
+              "type": "temporal"
+            },
+            "y": {
+              "datum": { "expr": "height" },
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "Event",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

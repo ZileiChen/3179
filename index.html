@@ -15,14 +15,28 @@
   <body>
     <h1>Ore Mining in Australia</h1>
     <p class="introduction">
-      Ore mining is a critical component of the nations GDP. Mining in Australia amounts to roughly 75% of the country's
-      exports.
+      Ore mining is a critical component of the nations GDP. Mining in Australia amou nts to roughly 75% of the
+      country's exports.
     </p>
     <div class="vis">
-      <div id="vis"></div>
+      <div id="mine-locations"></div>
+      <div id="ores-mined-per-state"></div>
+      <div id="vis-info-paragraph">
+        <p>
+          Mining is the biggest industry in Australia. The top 3 exports as well as production in terms of value is
+          iron, coal and gold. However, gold is one of the least mined materials in Australia. This is due to the price
+          of gold, being valued a lot higher compared to iron and coal, thus less gold is required to be mined for more
+          profit.
+        </p>
+      </div>
+      <div id="scatter-plot"></div>
+      <div id="gold-mined-per-year"></div>
     </div>
     <script>
-      vegaEmbed("#vis", "charts.json").catch(console.error);
+      vegaEmbed("#mine-locations", "charts/mineLocationsChart.json").catch(console.error);
+      vegaEmbed("#ores-mined-per-state", "charts/oresProcessedPerStateChart.json").catch(console.error);
+      vegaEmbed("#scatter-plot", "charts/totalOreMinedScatterChart.json").catch(console.error);
+      vegaEmbed("#gold-mined-per-year", "charts/goldProductionByYearChart.json").catch(console.error);
     </script>
   </body>
 </html>

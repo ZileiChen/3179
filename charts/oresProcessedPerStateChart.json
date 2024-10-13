@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Ores Processed per State",
+  "width": 400,
+  "height": 400,
+  "projection": {
+    "type": "mercator",
+    "center": [128, -25],
+    "scale": 400,
+    "translate": [200, 150]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "../mapData/states.json",
+        "format": { "type": "topojson", "feature": "states" }
+      },
+      "mark": { "type": "geoshape", "stroke": "black", "strokeWidth": 0.5 },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": { "url": "../data/stateData.json" },
+            "key": "State",
+            "fields": ["OreProcessed", "Mines"]
+          }
+        }
+      ],
+      "encoding": {
+        "color": {
+          "field": "OreProcessed",
+          "type": "quantitative",
+          "scale": { "scheme": "blues", "domain": [200, 20000] },
+          "title": "Ore Processed (Mt)"
+        },
+        "tooltip": [
+          { "field": "properties.STATE_NAME", "type": "nominal", "title": "State" },
+          {
+            "field": "OreProcessed",
+            "type": "quantitative",
+            "title": "Total Ore Processed (Mt)",
+            "format": ",.2f"
+          },
+          { "field": "Mines", "type": "quantitative", "title": "Number of Mines" }
+        ]
+      }
+    }
+  ]
+}

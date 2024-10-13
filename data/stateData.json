@@ -1,0 +1,9 @@
+[
+  { "State": "Western Australia", "OreProcessed": 19678.781200000005, "Mines": 225 },
+  { "State": "New South Wales", "OreProcessed": 1261.6673, "Mines": 50 },
+  { "State": "Victoria", "OreProcessed": 64.61111000000001, "Mines": 23 },
+  { "State": "Queensland", "OreProcessed": 2369.7860499999992, "Mines": 128 },
+  { "State": "South Australia", "OreProcessed": 797.85058, "Mines": 25 },
+  { "State": "Tasmania", "OreProcessed": 566.5269, "Mines": 31 },
+  { "State": "Northern Territory", "OreProcessed": 700.6028, "Mines": 60 }
+]
