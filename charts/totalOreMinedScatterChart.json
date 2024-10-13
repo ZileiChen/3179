@@ -13,14 +13,14 @@
       "type": "quantitative",
       "title": "Amount Mined (tonnes)",
       "scale": { "type": "log" },
-      "axis": { "grid": true }
+      "axis": { "grid": false }
     },
     "y": {
       "field": "ValuePerTonne",
       "type": "quantitative",
       "title": "Value per Tonne ($/t)",
       "scale": { "type": "log" },
-      "axis": { "grid": true }
+      "axis": { "grid": false }
     },
     "size": {
       "field": "TotalValue",

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart of export profit percentages by commodity.",
+  "height": 400,
+  "width": 400,
+  "data": {
+    "url": "../data/exportProfitPercentages.csv",
+    "format": { "type": "csv" }
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Commodity",
+      "type": "nominal",
+      "sort": "-y",
+      "axis": { "title": "Commodity" }
+    },
+    "y": {
+      "field": "Percentage",
+      "type": "quantitative",
+      "title": "Export Profit Percentage",
+      "axis": {
+        "format": ".0%",
+        "title": "Export Profit Percentage"
+      }
+    },
+    "tooltip": [
+      { "field": "Commodity", "type": "nominal" },
+      {
+        "field": "Percentage",
+        "type": "quantitative",
+        "title": "Export Profit Percentage",
+        "format": ".1%"
+      }
+    ],
+    "color": {
+      "field": "Commodity",
+      "type": "nominal",
+      "legend": null
+    }
+  }
+}
