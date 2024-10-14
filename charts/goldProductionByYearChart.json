@@ -6,7 +6,7 @@
   "layer": [
     {
       "data": {
-        "url": "../data/gold_production_long.csv",
+        "url": "data/gold_production_long.csv",
         "format": { "type": "csv" }
       },
       "selection": {

@@ -5,7 +5,7 @@
   "height": 400,
   "width": 400,
   "data": {
-    "url": "../data/exportProfitPercentages.csv",
+    "url": "data/exportProfitPercentages.csv",
     "format": { "type": "csv" }
   },
   "mark": "bar",

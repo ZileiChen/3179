@@ -12,7 +12,7 @@
   "layer": [
     {
       "data": {
-        "url": "../mapData/states.json",
+        "url": "mapData/states.json",
         "format": { "type": "topojson", "feature": "states" }
       },
       "mark": { "type": "geoshape", "stroke": "black", "strokeWidth": 0.5 },
@@ -20,7 +20,7 @@
         {
           "lookup": "properties.STATE_NAME",
           "from": {
-            "data": { "url": "../data/stateData.json" },
+            "data": { "url": "data/stateData.json" },
             "key": "State",
             "fields": ["OreProcessed", "Mines"]
           }

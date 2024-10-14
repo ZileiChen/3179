@@ -12,7 +12,7 @@
   "layer": [
     {
       "data": {
-        "url": "../mapData/states.json",
+        "url": "mapData/states.json",
         "format": { "type": "topojson", "feature": "states" }
       },
       "mark": {
@@ -24,7 +24,7 @@
     },
     {
       "data": {
-        "url": "../data/mineLocations.csv"
+        "url": "data/mineLocations.csv"
       },
       "selection": {
         "status_select": {
