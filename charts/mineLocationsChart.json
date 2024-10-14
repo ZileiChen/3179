@@ -26,6 +26,14 @@
       "data": {
         "url": "../data/mineLocations.csv"
       },
+      "selection": {
+        "status_select": {
+          "type": "multi",
+          "fields": ["Status"],
+          "bind": "legend"
+        }
+      },
+      "transform": [{ "filter": { "selection": "status_select" } }],
       "mark": {
         "type": "circle",
         "opacity": 0.8,

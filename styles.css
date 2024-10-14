@@ -24,3 +24,10 @@ h1 {
 .vis div {
   margin: 3px;
 }
+
+.note {
+  text-align: center;
+  font-weight: 100;
+  font-size: small;
+  color: gray;
+}
