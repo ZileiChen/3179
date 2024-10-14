@@ -21,8 +21,14 @@
     </p>
     <p class="note">*Note: various charts can use legends as filters</p>
     <div class="vis">
-      <div id="mine-locations"><p>iqwfuoaiweufh</p></div>
-      <div id="ores-mined-per-state"></div>
+      <div>
+        <div id="mine-locations"></div>
+      </div>
+      <div>
+        <div id="ores-mined-per-state"></div>
+        <p class="note"></p>
+      </div>
+
       <div id="vis-info-paragraph">
         <p>
           Mining is the biggest industry in Australia. The top 3 exports as well as production in terms of monetary
@@ -40,9 +46,30 @@
           mining industry's export profits in the year 2019.
         </p>
       </div>
-      <div id="scatter-plot"></div>
-      <div id="gold-mined-per-year"></div>
-      <div id="export-profits-chart"></div>
+      <div>
+        <div id="scatter-plot"></div>
+        <p class="note"></p>
+      </div>
+      <div>
+        <div id="gold-mined-per-year"></div>
+        <p class="note"></p>
+      </div>
+
+      <div>
+        <div id="export-profits-chart"></div>
+        <p class="note"></p>
+      </div>
+    </div>
+    <div class="note">
+      <p>Source: https://www.ga.gov.au/digital-publication/aimr2020/value-of-australian-mineral-exports</p>
+      <p>
+        Gavin Mudd,
+        https://research-repository.rmit.edu.au/articles/dataset/A_Comprehensive_Dataset_for_Australian_Mine_Production_1799_to_2021/22724081
+      </p>
+      <p>
+        Colclough, H. | Pheeney, J.
+        https://ecat.ga.gov.au/geonetwork/srv/api/records/9f175c45-e1ed-463b-8519-0200d435bc37
+      </p>
     </div>
     <script>
       vegaEmbed("#mine-locations", "charts/mineLocationsChart.json").catch(console.error);
