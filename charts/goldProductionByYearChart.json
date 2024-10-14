@@ -74,7 +74,7 @@
         {
           "mark": {
             "type": "rule",
-            "color": "red",
+            "color": "grey",
             "strokeWidth": 2
           },
           "encoding": {
@@ -88,9 +88,9 @@
           "mark": {
             "type": "text",
             "align": "right",
-            "dx": -20,
-            "dy": -50,
-            "color": "red",
+            "dx": -10,
+            "dy": -200,
+            "color": "grey",
             "fontSize": 10,
             "fontStyle": "italic"
           },

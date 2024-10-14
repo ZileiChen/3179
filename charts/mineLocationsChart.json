@@ -52,7 +52,7 @@
           { "field": "Name", "type": "nominal", "title": "Mine Name" },
           { "field": "State", "type": "nominal" },
           { "field": "Status", "type": "nominal" },
-          { "field": "CommodityGroup", "type": "nominal", "title": "Commodity Group" }
+          { "field": "Commodity Group", "type": "nominal", "title": "Commodity Group" }
         ]
       }
     }

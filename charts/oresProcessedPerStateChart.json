@@ -30,7 +30,11 @@
         "color": {
           "field": "OreProcessed",
           "type": "quantitative",
-          "scale": { "scheme": "blues", "domain": [200, 20000] },
+          "scale": {
+            "type": "log",
+            "scheme": "blues",
+            "domain": [50, 20000]
+          },
           "title": "Ore Processed (Mt)"
         },
         "tooltip": [

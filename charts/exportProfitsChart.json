@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bar chart of export profit percentages by commodity.",
+  "title": "Australian Mining Export Profit Ratios 2019",
   "height": 400,
   "width": 400,
   "data": {
