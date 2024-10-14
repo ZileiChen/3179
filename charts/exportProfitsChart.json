@@ -5,7 +5,7 @@
   "height": 400,
   "width": 400,
   "data": {
-    "url": "data/exportProfitPercentages.csv",
+    "url": "https://zileichen.github.io/3179/data/exportProfitPercentages.csv",
     "format": { "type": "csv" }
   },
   "mark": "bar",

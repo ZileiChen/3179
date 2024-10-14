@@ -12,7 +12,7 @@
   "layer": [
     {
       "data": {
-        "url": "mapData/states.json",
+        "url": "https://zileichen.github.io/3179/mapData/states.json",
         "format": { "type": "topojson", "feature": "states" }
       },
       "mark": {
@@ -24,7 +24,7 @@
     },
     {
       "data": {
-        "url": "data/mineLocations.csv"
+        "url": "https://zileichen.github.io/3179/data/mineLocations.csv"
       },
       "selection": {
         "status_select": {

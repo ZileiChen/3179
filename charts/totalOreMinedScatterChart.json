@@ -4,7 +4,7 @@
   "width": 400,
   "height": 400,
   "data": {
-    "url": "data/oresMined2021.csv",
+    "url": "https://zileichen.github.io/3179/data/oresMined2021.csv",
     "format": { "type": "csv" }
   },
   "encoding": {

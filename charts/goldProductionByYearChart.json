@@ -6,7 +6,7 @@
   "layer": [
     {
       "data": {
-        "url": "data/gold_production_long.csv",
+        "url": "https://zileichen.github.io/3179/data/gold_production_long.csv",
         "format": { "type": "csv" }
       },
       "selection": {
